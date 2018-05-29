@@ -1,22 +1,82 @@
 <html>
   <head>
+      <meta charset="UTF-8">
+      <title>Dashboard</title>
+      <!-- Google -->
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <!-- JS -->
       <script src="appjs/topics.js"></script>
       <script src="appjs/messages.js"></script>
       <script src="appjs/replies.js"></script>
       <script src="appjs/likes.js"></script>
       <script src="appjs/dislikes.js"></script>
       <script src="appjs/active_users.js"></script>
+      <!-- Bootstrap -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
   </head>
 
   <body>
-    <div id="topics"></div>
-    <div id="num_messages"></div>
-    <div id="num_replies"></div>
-    <div id="num_likes"></div>
-    <div id="num_dislikes"></div>
-    <div id="active_users"></div>
+    <div class="container">
+        <h1 class="font-weight-bold text-center mt-3" style="font-size:70px;">Dashboard</h1>
+        <h2 class="font-weight-bold text-center mt-3 mb-4" style="font-size:40px; color:#4e555b;">Messaging App Statistics</h2>
+    </div>
+    <div class="container">
+        <ul class="nav nav-tabs justify-content-between" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="topics-tab" data-toggle="tab" href="#topicstab" role="tab" aria-controls="topics" aria-selected="true">Trending Topics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messagestab" role="tab" aria-controls="messages" aria-selected="false">Messages per Day</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="replies-tab" data-toggle="tab" href="#repliestab" role="tab" aria-controls="replies" aria-selected="false">Replies per Day</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likestab" role="tab" aria-controls="likes" aria-selected="false">Likes per Day</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="dislikes-tab" data-toggle="tab" href="#dislikestab" role="tab" aria-controls="dislikes" aria-selected="false">Dislikes per Day</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="users-tab" data-toggle="tab" href="#userstab" role="tab" aria-controls="users" aria-selected="false">Active Users per Day</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="topicstab" role="tabpanel" aria-labelledby="topics-tab">
+              <h1 class="font-weight-bold text-center mt-4">Trending Topics</h1>
+              <h4 class="text-muted text-center mb-4">Top ten trending topics via hashtags</h4>
+              <div class="" id="topics"></div>
+          </div>
+          <div class="tab-pane fade" id="messagestab" role="tabpanel" aria-labelledby="messages-tab">
+              <h1 class="font-weight-bold text-center mt-4">Messages</h1>
+              <h4 class="text-muted text-center">Number of messages sent per day for a period of 10 days</h4>
+                <div class="" id="messages"></div>
+          </div>
+          <div class="tab-pane fade" id="repliestab" role="tabpanel" aria-labelledby="replies-tab">
+              <h1 class="font-weight-bold text-center mt-4">Replies</h1>
+              <h4 class="text-muted text-center">Number of replies per day for a period of 10 days</h4>
+              <div class="" id="replies"></div>
+          </div>
+          <div class="tab-pane fade" id="likestab" role="tabpanel" aria-labelledby="likes-tab">
+              <h1 class="font-weight-bold text-center mt-4">Likes</h1>
+              <h4 class="text-muted text-center">Number of likes per day for a period of 10 days</h4>
+              <div class="" id="likes"></div>
+          </div>
+          <div class="tab-pane fade" id="dislikestab" role="tabpanel" aria-labelledby="dislikes-tab">
+              <h1 class="font-weight-bold text-center mt-4">Dislikes</h1>
+              <h4 class="text-muted text-center">Number of dislikes per day for a period of 10 days</h4>
+              <div class="" id="dislikes"></div>
+          </div>
+          <div class="tab-pane fade" id="userstab" role="tabpanel" aria-labelledby="users-tab">
+              <h1 class="font-weight-bold text-center mt-4">Active Users</h1>
+              <h4 class="text-muted text-center">Number of users who reacted or sent a message per day for a period of 10 days</h4>
+              <div class="" id="users"></div>
+          </div>
+        </div>
+    </div>
   </body>
 </html>
 

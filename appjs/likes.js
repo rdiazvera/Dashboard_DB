@@ -1,7 +1,7 @@
 google.charts.load('current', {'packages': ['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
-function reformatData(jsonData){
+function reformatLikesData(jsonData){
     var temp= jsonData.NumberOfLikes;
     console.log("temp: " + JSON.stringify(temp));
     var result = [];
@@ -30,21 +30,18 @@ function drawChart() {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'date');
     data.addColumn('number', 'count');
-    data.addRows(reformatData(JSON.parse(jsonData)));
+    data.addRows(reformatLikesData(JSON.parse(jsonData)));
 
     var options = {
-        title: 'Likes per Day',
-        chartArea: {width: '50%'},
-        hAxis: {
-            title: 'Count',
-            minValue: 0
-        },
-        vAxis: {
-            title: 'Date'
-        }
+        width: '1300',
+        height: '500',
+        bar: {groupWidth: "75%"},
+        legend: { position: "none" },
+        hAxis: {title: 'Date'},
+        vAxis: {title: 'Likes Count', minValue: 0}
     };
 
-    var chart = new google.visualization.BarChart(document.getElementById('num_likes'));
+    var chart = new google.visualization.ColumnChart(document.getElementById('likes'));
 
     chart.draw(data, options);
 }

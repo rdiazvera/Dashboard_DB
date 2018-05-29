@@ -1,7 +1,7 @@
 google.charts.load('current', {'packages': ['table']});
 google.charts.setOnLoadCallback(drawTable)
 
-function reformatData(jsonData){
+function reformatTopicsData(jsonData){
     var temp= jsonData.Topics;
     console.log("temp: " + JSON.stringify(temp));
     var result = [];
@@ -27,14 +27,20 @@ function drawTable() {
 
     console.log("jsonData: " + JSON.parse(jsonData));
 
-    // Create our data table out of JSON data loaded from server.
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Topic');
     data.addColumn('number', 'Count');
-    data.addRows(reformatData(JSON.parse(jsonData)));
+    data.addRows(reformatTopicsData(JSON.parse(jsonData)));
+
+    var options = {
+        showRowNumber: true,
+        width: '100%',
+        height: '50%',
+        sort: 'disable',
+        style: 'font-style:bold; font-size:22px;'};
 
     var table = new google.visualization.Table(document.getElementById('topics'));
 
-    table.draw(data, {title: 'Trending Topics', showRowNumber: true, width: '50%'});
+    table.draw(data, options);
 
 }

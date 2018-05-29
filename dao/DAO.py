@@ -20,7 +20,7 @@ class DAO:
     def getMessages(self):
         cursor = self.conn.cursor()
         query = "select date_trunc('day', date_created), count(date_trunc('day', date_created)) from messages " \
-                "group by date_trunc('day', date_created);"
+                "group by date_trunc('day', date_created) order by date_trunc('day', date_created) desc limit 10;"
         cursor.execute(query)
         result = []
         for row in cursor:
@@ -31,7 +31,8 @@ class DAO:
     def getReplies(self):
         cursor = self.conn.cursor()
         query = "select date_trunc('day', date_created), count(date_trunc('day', date_created)) from replies as r, " \
-                "messages as m where r.reply_mid = m.mid group by date_trunc('day', date_created);"
+                "messages as m where r.reply_mid = m.mid group by date_trunc('day', date_created) order by " \
+                "date_trunc('day', date_created) desc limit 10;"
         cursor.execute(query)
         result = []
         for row in cursor:
@@ -41,7 +42,8 @@ class DAO:
     def getLikes(self):
         cursor = self.conn.cursor()
         query = "select date_trunc('day', date_created), count(date_trunc('day', date_created)) from reactions " \
-                "where type = 'like' group by date_trunc('day', date_created);"
+                "where type = 'like' group by date_trunc('day', date_created) order by " \
+                "date_trunc('day', date_created) desc limit 10;"
         cursor.execute(query)
         result = []
         for row in cursor:
@@ -51,7 +53,8 @@ class DAO:
     def getDislikes(self):
         cursor = self.conn.cursor()
         query = "select date_trunc('day', date_created), count(date_trunc('day', date_created)) from reactions " \
-                "where type = 'dislike' group by date_trunc('day', date_created);"
+                "where type = 'dislike' group by date_trunc('day', date_created) order by " \
+                "date_trunc('day', date_created) desc limit 10;"
         cursor.execute(query)
         result = []
         for row in cursor:
@@ -60,7 +63,9 @@ class DAO:
 
     def getActiveUsers(self):
         cursor = self.conn.cursor()
-        query = ""
+        query = "select date_trunc('day', date_created), count(date_trunc('day', date_created)) from " \
+                "(select uid, date_created from reactions union select uid, date_created from messages) as active_users " \
+                "group by date_trunc('day', date_created) order by date_trunc('day', date_created) desc limit 10;"
         cursor.execute(query)
         result = []
         for row in cursor:

@@ -42,12 +42,12 @@ class Handler:
         mapped_result = []
         for r in result:
             mapped_result.append(buildDict.build_count_dict(self, r))
-        return jsonify(NumberOfDisikes=mapped_result)
+        return jsonify(NumberOfDislikes=mapped_result)
 
     def getActiveUsers(self):
         dao = DAO()
         result = dao.getActiveUsers()
         mapped_result = []
         for r in result:
-            mapped_result.append(buildDict.build_users_dict(self, r))
-        return jsonify(ActiveUsers=mapped_result)
+            mapped_result.append(buildDict.build_count_dict(self, r))
+        return jsonify(NumberOfUsers=mapped_result)
